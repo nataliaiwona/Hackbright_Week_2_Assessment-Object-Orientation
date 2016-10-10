@@ -99,20 +99,28 @@ class Tony(SopranosCharacters):
 # Create your classes and class methods
 
 class Student(object):
+    """Student Class."""
 
     def __init__(self, first_name, last_name, address):
+        """Student information."""
+
         self.first_name = first_name
         self.last_name = last_name
         self.address = address
 
 class Question(object):
+    """Question Class."""
 
     def __init__(self, question, correct_answer):
+        """Question and correct answer initialization."""
         
         self.question = question
         self.correct_answer = correct_answer
 
     def ask_and_evaluate(self):
+        """Provides question and asks user for an input.
+
+        Returns True if input matches correct answer.""" 
 
         ask_for_answer= raw_input(self.question + ": ")
 
@@ -120,17 +128,23 @@ class Question(object):
 
 
 class Exam(object):
+    """Exam Class."""
 
     def __init__(self, exam_name):
+        """Initializing exam name and empty question list."""
+
         self.exam_name = exam_name
         self.questions = []
 
     def add_question(self, question, correct_answer):
+        """Adds question and correspoinding answer to list."""
         
         new_question = Question(question, correct_answer)
         self.questions.append(new_question)
 
     def administer(self):
+        """Administers exam and returns score."""
+
         score = 0
 
         for question in self.questions:
@@ -141,26 +155,37 @@ class Exam(object):
         return score
 
 class Quiz(Exam):
+    """Quiz Class, Subclass of Exam Class."""
 
     def __init__(self, quiz_name):
+        """Initializing quiz_name using Exam Class init."""
+
         super(Quiz, self).__init__(quiz_name)
 
     def add_question(self, question, correct_answer):
+        """Adds question and corresponding answer to list using Exam Class."""
+
         super(Quiz, self).add_question(question, correct_answer)
 
     def administer(self):
+        """Administers quiz and returns score."""
+
         result = super(Quiz, self).administer()
         num_of_questions = len(self.questions)
 
         return result >= (num_of_questions/2)
 
 def take_test(exam, student):
+    """Administers exam and returns student score."""
 
     exam_result = exam.administer()
 
     student.score = exam_result
 
+    return student.score
+
 def example(exam_name, question, correct_answer, first_name, last_name, address):
+    """Example Exam, returns student score from administered exam."""
 
     midterm = Exam(exam_name)
 
