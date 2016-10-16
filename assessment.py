@@ -157,16 +157,6 @@ class Exam(object):
 class Quiz(Exam):
     """Quiz Class, Subclass of Exam Class."""
 
-    def __init__(self, quiz_name):
-        """Initializing quiz_name using Exam Class init."""
-
-        super(Quiz, self).__init__(quiz_name)
-
-    def add_question(self, question, correct_answer):
-        """Adds question and corresponding answer to list using Exam Class."""
-
-        super(Quiz, self).add_question(question, correct_answer)
-
     def administer(self):
         """Administers quiz and returns score."""
 
@@ -184,12 +174,14 @@ def take_test(exam, student):
 
     return student.score
 
-def example(exam_name, question, correct_answer, first_name, last_name, address):
+def example(exam_name, first_name, last_name, address):
     """Example Exam, returns student score from administered exam."""
 
     midterm = Exam(exam_name)
 
-    midterm.add_question(question, correct_answer)
+    midterm.add_question("What color is the sky?", "blue")
+    midterm.add_question("What color is the sky?", "blue")
+    midterm.add_question("What color is the sky?", "blue")
 
     student_1 = Student(first_name, last_name, address)
 
